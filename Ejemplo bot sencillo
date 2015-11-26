@@ -1,0 +1,40 @@
+#!/usr/bin/python3 -u
+import telebot
+import time
+from telebot import types
+
+bot = telebot.TeleBot("TOKEN")
+tiempo = time.strftime("%H horas %M minutos y %S segundos exactamente")
+#sti = open('/tmp/sti.webp', 'bot')
+
+
+def recibe(messages):
+    for m in messages:
+        if m.content_type == "text":
+            if m.text == "Hola Neoalfred":
+                bot.send_message(m.chat.id,"Hola su cyberexcelencia")
+                bot.send_message(m.chat.id,"\n¿Que desea?")
+            elif m.text == "puedo llamarte al?":
+                bot.send_message(m.chat.id,"como quiera")
+            elif m.text == "yo he visto cosas que no creerias":
+                bot.send_message(m.chat.id,"atacar naves en llamas más allá de Orión... he visto rayos c brillar en la oscuridad cerca de la puerta de tanhaüser. Todos esos momentos se perderán en el tiempo como lágrimas en la lluvia. Hora de morir.")
+            elif m.text == "te gusta el rock?":
+                bot.send_message(m.chat.id,"no tengo gustos, su cyberexcelencia")
+                bot.send_message(m.chat.id,"Lo siento")
+            elif m.text == "id":
+                bot.send_message(m.chat.id,"158424035:AAFEUqsxO5vwSopVihelRAaTdXdvSnIKAtg")
+                bot.send_message(m.chat.id,"cuidado con mi código, por favor...")
+            elif m.text == "hora?":
+                bot.send_message(m.chat.id,"Son las "+tiempo+" su cyberexcelencia")
+            #elif m.text == "gracias":
+             #   bot.send_sticker(m.chat.id, sti)
+             
+            elif m.text == "clases":
+                bot.send_message(m.chat.id,"Lunes: PDOO y ED, Martes: SO,ED,SO, Miércoles: EC y PDOO ,Jueves: ED, SO, SCD, Viernes: SCD y EC ")
+
+            else:
+                bot.send_message(m.chat.id,m.text)
+
+bot.set_update_listener(recibe)
+
+bot.polling()
