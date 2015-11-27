@@ -1,0 +1,73 @@
+#!/usr/bin/python3 -u
+import telebot
+import time
+import urllib
+from telebot import types
+
+bot = telebot.TeleBot("TOKEN")
+tiempo = time.strftime("%H horas %M minutos y %S segundos exactamente")
+#sti = open('/tmp/sti.webp', 'bot')
+cat='http://www.wallpapersis.com/wp-content/uploads/2013/09/Stretches-White-Feet-Eyes-Cover-Blanket-Kitty-Cat.jpg'
+f = open('out.jpg','wb')
+f.write(urllib.request.urlopen(cat).read())
+f.close()
+
+@bot.message_handler(commands=['start'])
+def send_photo(message):
+    bot.send_message(message.chat.id, 'Este es su cyberasistente Neoalfred. Puede usar: \n - clases\n - día de la semana\n - hora?\n - id?\n - gatete\n - ayuda\n   Espero ser de su agrado, para servirle. \n NOTA:  escriba SIEMPRE en minúscula. \n Cuando no entiendo algo, lo repito. ')
+
+def recibe(messages):
+    for m in messages:
+        if m.content_type == "text":
+            if m.text == "Hola Neoalfred":
+                bot.send_message(m.chat.id,"Hola su cyberexcelencia")
+                bot.send_message(m.chat.id,"\n¿Que desea?")
+            elif m.text == "puedo llamarte al?":
+                bot.send_message(m.chat.id,"como quiera")
+            elif m.text == "yo he visto cosas que no creerias":
+                bot.send_message(m.chat.id,"atacar naves en llamas más allá de Orión... he visto rayos c brillar en la oscuridad cerca de la puerta de tanhaüser. Todos esos momentos se perderán en el tiempo como lágrimas en la lluvia. Hora de morir.")
+            elif m.text == "te gusta el rock?":
+                bot.send_message(m.chat.id,"no tengo gustos, su cyberexcelencia")
+                bot.send_message(m.chat.id,"Lo siento")
+            elif m.text == "id":
+                bot.send_message(m.chat.id,"158424035:AAFS-MVS0dukkgNOdzr4cLLeERE-ub-gcto")
+                bot.send_message(m.chat.id,"cuidado con mi código, por favor...")
+            elif m.text == "hora?":
+                bot.send_message(m.chat.id,"Son las "+tiempo+" su cyberexcelencia")
+            #elif m.text == "gracias":
+             #   bot.send_sticker(m.chat.id, sti)
+             
+            elif m.text == "clases":
+                bot.send_message(m.chat.id,"Lunes: PDOO y ED, Martes: SO,ED,SO, Miércoles: EC y PDOO ,Jueves: ED, SO, SCD, Viernes: SCD y EC ")
+                bot.send_message(m.chat.id,"Si quiere más detalles, dígame qué día es hoy")
+            elif m.text == "lunes":
+                bot.send_message(m.chat.id,"Hoy tiene 2 horas de PDOO de prácticas 2.6 y 2 de Estructura de datos con el director")
+            elif m.text == "martes":
+                bot.send_message(m.chat.id,"Hoy tiene 2 horas de SO de prácticas 2.1 y 1 de Estructura de datos con el director y 1 de SO")
+            elif m.text == "miercoles":
+                bot.send_message(m.chat.id,"Hoy tiene 2 horas de EC 2.9 de prácticas y 2 de PDOO")
+            elif m.text == "jueves":
+                bot.send_message(m.chat.id,"Hoy tiene 1 horas de ED de prácticas en la 3.1, 1 de SO en la 2.1 y otras dos de SCD. Le recuerdo que hoy entra a las 4:30 y sale a las 8:30")
+            elif m.text == "viernes":
+                bot.send_message(m.chat.id,"Hoy tiene 2 horas de SCD de prácticas 2.7 y 2 de Estructura de Computadores")
+            elif m.text == "gracias":
+                bot.send_message(m.chat.id,"Para servirle, su cyberexcelencia")
+            elif m.text == "ayuda":
+                bot.send_message(m.chat.id,"puede preguntar por: 'clases' saludar, decir el día de la semana preguntar la hora 'hora?' o mi id 'id' o pedir la foto de un gato 'gatete'. Escriba siempre en minúscula. Cuando no entiendo algo, lo repito ")
+            elif m.text == "foto":
+                bot.send_chat_action(m.chat.id, 'upload_photo')
+                img = open('out.jpg', 'rb')
+                bot.send_photo(m.chat.id, img, reply_to_message_id=m.message_id)
+                img.close()
+            elif m.text == "dime":
+                bot.send_message(m.chat.id,"No he dicho nada")
+            
+            
+            else:
+                bot.send_message(m.chat.id,m.text)
+                
+
+bot.set_update_listener(recibe)
+
+bot.polling()
+
