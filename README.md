@@ -1,5 +1,5 @@
-# taller de bots
-del #miercolesgeek de la OSL, UGR
+# Taller de bots
+del [#miercolesgeek](http://www.meetup.com/es-ES/Granada-Geek/) de la OSL, UGR
 
 Aquí encontraréis lo necesario para crear vuestro bot de telegram, con las correcciones encontradas tras las dificultades del miércoles. En issues encontraréis el pdf de la presentación.
 
